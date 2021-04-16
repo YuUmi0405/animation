@@ -1,0 +1,22 @@
+.btn {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  padding: 0px;
+  color: rgba(0, 0, 0, 0.32);
+
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 50%;
+  transition: transparent;
+  width: 40px;
+  height: 40px;
+  margin: 0px -8px;
+}
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}

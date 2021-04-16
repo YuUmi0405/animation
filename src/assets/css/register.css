@@ -1,0 +1,143 @@
+.slide {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    position: fixed;
+}
+
+.wallpaper {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 0;
+
+
+}
+
+@-webkit-keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+}
+
+.anim_fade_image {
+    position: absolute;
+    -webkit-animation-name: fadeInOut;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 24s;
+    -webkit-animation-direction: alternate;
+}
+
+.signup-form {
+    margin: 15vh auto 0;
+    text-align: center;
+    background-color: hsla(0, 0%, 100%, .92);
+    width: 363px;
+    padding: 40px 0 38px;
+    border-radius: 4px;
+}
+
+.signup-form__title {
+    margin-top: -8px;
+    margin-bottom: 30px;
+    color: #757c80;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.signup_button {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 22px;
+    border-style: none;
+    color: #fff;
+    background: #0096fa;
+    outline: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color .2s;
+}
+
+.sns_button_common {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 22px;
+    border-style: none;
+    color: #fff;
+
+    outline: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color .2s;
+}
+
+.signup_button:hover {
+    background-color: #007dd1;
+}
+
+.signup-sns {
+    margin-top: 20px;
+}
+
+.sns-btn {
+    margin-top: 14px;
+}
+
+.sns-apple {
+    background-color: #000000;
+}
+
+.sns-other {
+    color: rgba(0, 0, 0, .64);
+    background-color: #FFFFFF;
+}
+
+.terms {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: rgba(0, 0, 0, .32);
+    border-top: 1px solid rgba(0, 0, 0, 0.20);
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 14px;
+}
+.signup-form-nav {
+    list-style: none;
+    width: 300px;
+    margin: 10px auto 0;
+    overflow: hidden;
+    text-align: right;
+}
+.signup-form-nav a {
+    color: #5c5c5c;
+    font-size: 12px;
+    line-height: 16px;
+    text-decoration: none;
+}
