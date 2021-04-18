@@ -78,6 +78,23 @@
     transition: background-color .2s;
 }
 
+.back_button {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 22px;
+    border-style: none;
+    color: #fff;
+    background: #525255;
+    outline: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color .2s;
+}
+
 .sns_button_common {
     display: block;
     margin: 0 auto;
@@ -87,7 +104,6 @@
     border-radius: 22px;
     border-style: none;
     color: #fff;
-
     outline: none;
     font-weight: 700;
     font-size: 14px;
@@ -97,6 +113,10 @@
 
 .signup_button:hover {
     background-color: #007dd1;
+}
+
+.back_button:hover {
+    background-color: #1a1b1b;
 }
 
 .signup-sns {
@@ -128,16 +148,31 @@
     margin: 0 auto;
     padding-top: 14px;
 }
+
+/*新用户注册以及忘记密码样式*/
 .signup-form-nav {
     list-style: none;
     width: 300px;
     margin: 10px auto 0;
     overflow: hidden;
-    text-align: right;
+    /* text-align: right; */
 }
-.signup-form-nav a {
+.signup-form-nav span{
     color: #5c5c5c;
     font-size: 12px;
     line-height: 16px;
     text-decoration: none;
+}
+.signup-form-nav-left {
+    text-align: left;
+    margin-right: 80px;
+}
+.signup-form-nav-right {
+    text-align: right;
+    margin-left: 80px;
+}
+
+/*用户名密码输入框样式*/
+.inp {
+    margin: 0 30px;
 }
