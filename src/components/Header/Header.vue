@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="2">
         <!--Logo-->
-        <img src="@/assets/img/icon2.png" height="30px" style="margin-top: 5px"/>
+        <img src="" height="30px" style="margin-top: 5px"/>
       </el-col>
       <!--搜索-->
       <el-col :span="3" class="search">

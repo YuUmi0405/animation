@@ -2,7 +2,7 @@
 <template>
   <div class="slide">
     <transition name="fade" mode="out-in">
-      <img v-bind:key="img_url" class="wallpaper" :src="img_url" />
+      <img v-bind:key="img_url" class="wallpaper" :src="img_url"/>
     </transition>
   </div>
 </template>
@@ -12,23 +12,22 @@ export default {
   name: "back_banner",
   data() {
     return {
-      show: true,
       img_url: require("../assets/img/icon2.png")
     };
   },
   created() {
-      setInterval(()=>{
-              this.$axios.get("/?lx=dongman&format=json").then(reponse => {
-          this.img_url = reponse.data.imgurl
-    });
-      },5000)
-
+    setInterval(() => {
+      this.$axios.get("/?lx=dongman&format=json").then((reponse) => {
+        this.img_url = reponse.data.imgurl
+      });
+    }, 5000);
   },
 };
 </script>
 
 <style scoped>
-.fade-enter-active,.fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 1s;
 }
 
