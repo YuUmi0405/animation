@@ -13,13 +13,16 @@ export default {
   data() {
     return {
       show: true,
-      img_url: require("../assets/img/default_bg.jpg")
+      img_url: require("../assets/img/icon2.png")
     };
   },
   created() {
-      this.$axios.get("/?lx=dongman&format=json").then(reponse => {
+      setInterval(()=>{
+              this.$axios.get("/?lx=dongman&format=json").then(reponse => {
           this.img_url = reponse.data.imgurl
     });
+      },5000)
+
   },
 };
 </script>
