@@ -20,7 +20,7 @@ export default {
       this.$axios.get("/?lx=dongman&format=json").then((reponse) => {
         this.img_url = reponse.data.imgurl
       });
-    }, 5000);
+    }, 10000);
   },
 };
 </script>
