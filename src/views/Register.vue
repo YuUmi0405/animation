@@ -19,7 +19,7 @@
                     </div>
 
                     <br>
-                    <button class="signup_button">注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
+                    <button name="register" class="signup_button" @click="register_func">注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
                     <br>
                     <router-link to="login"><button class="back_button">返&nbsp;&nbsp;&nbsp;&nbsp;回</button></router-link>
                     <br>
@@ -48,6 +48,31 @@
                 ck_passwd: ""
             }
         },
+        methods: {
+            register_func() {
+                if (!this.username || !this.passwd) {
+                    this.$message({
+                        message: "请输入用户名或密码",
+                        type: "warning",
+                        duration: 1000,
+                    });
+                } else if (!this.ck_passwd) {
+                    this.$message({
+                        message: "请再次输入密码",
+                        type: "warning",
+                        duration: 1000,
+                    });
+                } else if (this.passwd != this.ck_passwd) {
+                    this.$message({
+                        message: "两次密码不一致",
+                        type: "warning",
+                        duration: 1000,
+                    });
+                } else {
+                    //axios请求
+                }
+            }
+        }
     }
 
 </script>

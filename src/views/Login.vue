@@ -13,7 +13,7 @@
                         <el-input name="passwd" v-model="passwd" placeholder="密码" show-password></el-input>
                     </div>
                     <br>
-                    <button name="login" class="signup_button">登录</button>
+                    <button name="login" class="signup_button" @click="login_func">登录</button>
                     <div class="signup-form-nav">
                         <span class="signup-form-nav-left">新用户?
                             <router-link to="/register"><span style="color:#409EFF">注册</span></router-link>
@@ -33,11 +33,6 @@
 
             <div class="footer"></div>
         </div>
-        <div>
-
-
-        </div>
-
     </div>
 
 </template>
@@ -56,6 +51,17 @@
                 passwd: ''
             }
         },
+        methods: {
+            login_func() {
+                if (!this.username || !this.passwd) {
+                    this.$message({
+                        message: "请输入用户名或密码",
+                        type: "warning",
+                        duration: 1000,
+                    });
+                }
+            }
+        }
     }
 
 </script>

@@ -104,27 +104,8 @@ export default {
       } else {
         if (!this.is_send) return;
         this.is_send = false;
-        this.$axios
-          .post(this.$settings.base_url + "/user/email/", {
-            email: this.email,
-          })
-          .then((response) => {
-            if (response.data === 0) {
-              this.$message({
-                message: "邮箱已存在",
-                type: "warning",
-                duration: 1000,
-              });
-              this.is_send = true;
-            } else if (response.data === 3) {
-              this.$message({
-                message: "邮箱格式错误",
-                type: "warning",
-                duration: 1000,
-              });
-              this.is_send = true;
-            } else {
-              this.$message({
+        // 重发倒计时
+        this.$message({
                 message: "验证码已发送",
                 type: "success",
                 duration: 1000,
@@ -137,14 +118,50 @@ export default {
                   this.is_send = true; // 重新回复点击发送功能的条件
                 } else {
                   smtp_interval_time -= 1;
-                  this.smtp_interval = `${smtp_interval_time}秒后再发`;
+                  this.code_interval = `${smtp_interval_time}秒后再发`;
                 }
               }, 1000);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        // this.$axios
+        //   .post(this.$settings.base_url + "/user/email/", {
+        //     email: this.email,
+        //   })
+        //   .then((response) => {
+        //     if (response.data === 0) {
+        //       this.$message({
+        //         message: "邮箱已存在",
+        //         type: "warning",
+        //         duration: 1000,
+        //       });
+        //       this.is_send = true;
+        //     } else if (response.data === 3) {
+        //       this.$message({
+        //         message: "邮箱格式错误",
+        //         type: "warning",
+        //         duration: 1000,
+        //       });
+        //       this.is_send = true;
+        //     } else {
+        //       this.$message({
+        //         message: "验证码已发送",
+        //         type: "success",
+        //         duration: 1000,
+        //       });
+        //       let smtp_interval_time = 60;
+        //       let timer = setInterval(() => {
+        //         if (smtp_interval_time <= 1) {
+        //           clearInterval(timer);
+        //           this.smtp_interval = "获取验证码";
+        //           this.is_send = true; // 重新回复点击发送功能的条件
+        //         } else {
+        //           smtp_interval_time -= 1;
+        //           this.smtp_interval = `${smtp_interval_time}秒后再发`;
+        //         }
+        //       }, 1000);
+        //     }
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
       }
     },
   },
