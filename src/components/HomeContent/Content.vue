@@ -55,4 +55,7 @@
         margin: 0;
         padding: 0;
     }
+    .el-tabs__item{
+        font-size: 18px;
+    }
 </style>
