@@ -129,7 +129,7 @@
 </script>
 <style scoped>
     .recommend-work{
-        padding-left: 50px;
+        padding-left: 20px;
     }
     .cFrVDg {
     -webkit-mask-image: linear-gradient(to right, transparent, rgb(0, 0, 0) 72px, rgb(0, 0, 0) calc(100% - 72px), transparent);

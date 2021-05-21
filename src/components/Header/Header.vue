@@ -67,7 +67,7 @@ export default {
 .add_member {
   display: block;
   height: 100%;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: rgb(253, 158, 22);
   white-space: nowrap;
