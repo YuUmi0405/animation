@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '@/views/Home'
 import Register from '../views/Register'
 import Login from "../views/Login";
 import Home from "../views/Home";
 import ForgetPasswd from "../views/ForgetPasswd";
+import ImageDetail from "../views/ImageDetail";
 
 Vue.use(VueRouter)
 
@@ -21,11 +21,14 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-    {
+  }, {
     path: '/forget',
     name: 'Forget',
     component: ForgetPasswd
+  },{
+    path: '/image_detail',
+    name: 'ImageDetail',
+    component: ImageDetail
   },
 
 

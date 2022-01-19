@@ -42,7 +42,7 @@ export default {
   height: 30px;
   line-height: 0;
   margin-left: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   vertical-align: middle;
 }
 .avatar {
