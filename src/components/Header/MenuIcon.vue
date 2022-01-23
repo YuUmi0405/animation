@@ -9,7 +9,7 @@
                      18H19C19.5523 18 20 17.5523 20 17C20 16.4477 19.5523 16 19 16H5Z"></path>
       </svg>
     </button>
-    <LefeMenu :menu_open.sync='left_menu_open' @is_open='is_open'></LefeMenu>
+    <LeftMenu :menu_open.sync='left_menu_open' @is_open='is_open'></LeftMenu>
 
   </span>
 
@@ -17,7 +17,7 @@
 
 <script>
 import '@/assets/css/header_btn.css'
-import LefeMenu from './LefeMenu'
+import LeftMenu from './LeftMenu'
 export default {
   name: "MenuIcon",
   data () {
@@ -36,7 +36,7 @@ export default {
 
   },
   components: {
-    LefeMenu
+    LeftMenu
   }
 }
 </script>

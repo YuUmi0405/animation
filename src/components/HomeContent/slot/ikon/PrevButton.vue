@@ -1,6 +1,6 @@
 <template>
   <div @click="slidePrev" id="prev_next_button">
-    <button type="button" class="button_next_prev" style="left: 0px; padding-left: 16px; padding-bottom: 0px;">
+    <button type="button" class="button_next_prev" style="left: 0; padding-left: 16px; padding-bottom: 0;">
       <div class="common_svg_div">
         <svg viewBox="0 0 24 24" size="24" class="prev_next_svg">
           <path

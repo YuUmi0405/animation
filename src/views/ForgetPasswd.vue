@@ -72,7 +72,7 @@
 import "@/assets/css/register.css";
 import BackBanner from "../components/BackBanner";
 export default {
-  name: "forgetpasswd",
+  name: "forgetPasswd",
   components: {
     BackBanner,
   },

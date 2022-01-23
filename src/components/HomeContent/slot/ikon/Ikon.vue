@@ -8,7 +8,7 @@
 
       <!--关注用户的作品-->
       <template v-slot:concern_work>
-        <ConcernWork></ConcernWork>
+        <ConcernWork ></ConcernWork>
       </template>
 
       <!--推荐作品-->
@@ -41,6 +41,8 @@ export default {
     RecommendWork,
     RankList
   },
+  methods:{
+  }
 
 }
 </script>

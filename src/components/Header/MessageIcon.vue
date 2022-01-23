@@ -9,7 +9,7 @@
 <script>
 import '@/assets/css/header_btn.css'
 export default {
-  name: "LefeMenu"
+  name: "LeftMenu"
 }
 </script>
 
