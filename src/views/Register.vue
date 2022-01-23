@@ -62,14 +62,20 @@
                         type: "warning",
                         duration: 1000,
                     });
-                } else if (this.passwd != this.ck_passwd) {
+                } else if (this.passwd !== this.ck_passwd) {
                     this.$message({
                         message: "两次密码不一致",
                         type: "warning",
                         duration: 1000,
                     });
                 } else {
-                    //axios请求
+                    let data = {
+                        username: this.username,
+                        password: this.password
+                    }
+                    this.$axios.post(this.$api.register_api,data).then(res=>{
+                        console.log(res);
+                    })
                 }
             }
         }

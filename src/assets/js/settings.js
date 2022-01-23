@@ -1,3 +1,12 @@
-export default{
-	base_url:'http://127.0.0.1:8000'
+const errorHandler = (error, vm)=>{
+  console.error('抛出全局异常');
+  console.error(vm);
+  console.error(error);
+
+}
+
+
+
+export {
+	errorHandler,
 }
