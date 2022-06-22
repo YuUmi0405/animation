@@ -20,10 +20,9 @@
         },
         created() {
             for (let i = 0; i < 10; i++) {
-                this.$axios.get("/?lx=dongman&format=json").then(response => {
-                    console.log(response)
-                    this.img_list.push(response.data.imgurl)
-                });
+                // this.$axios.get("/?lx=dongman&format=json").then(response => {
+                //     this.img_list.push(response.data.imgurl)
+                // });
             }
 
         },

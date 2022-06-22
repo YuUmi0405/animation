@@ -50,7 +50,9 @@
         },
         methods: {
             register_func() {
+
                 if (!this.username || !this.passwd) {
+                    // 校验密码是否输入
                     this.$message({
                         message: "请输入用户名或密码",
                         type: "warning",
@@ -73,9 +75,8 @@
                         username: this.username,
                         password: this.password
                     }
-                    this.$axios.post(this.$api.register_api,data).then(res=>{
-                        console.log(res);
-                    })
+                    let res_data = this.$api.register(data)
+                    console.log(res_data)
                 }
             }
         }

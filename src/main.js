@@ -1,5 +1,4 @@
 import cookies from 'vue-cookies'
-import axios from 'axios'
 import router from './router/index'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Vue from 'vue'
@@ -20,9 +19,6 @@ Vue.prototype.$cookies = cookies;
 // Vue.prototype.$settings = settings
 Vue.prototype.$api = api
 Vue.prototype.$throw = (error) => errorHandler(error, this);
-Vue.prototype.$axios = axios
-// 解决第三方接口跨域问题
-axios.defaults.baseURL = '/api'
 
 
 new Vue({

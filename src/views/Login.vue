@@ -10,7 +10,7 @@
                     </div>
                     <br>
                     <div class="inp">
-                        <el-input name="passwd" v-model="passwd" placeholder="密码" show-password></el-input>
+                        <el-input name="password" v-model="password" placeholder="密码" show-password></el-input>
                     </div>
                     <br>
                     <button name="login" class="signup_button" @click="login_func">登录</button>
@@ -40,25 +40,42 @@
 <script>
     import '@/assets/css/register.css'
     import BackBanner from "../components/BackBanner";
+
     export default {
         name: "Login",
-        components:{
+        components: {
             BackBanner
         },
         data() {
             return {
                 username: '',
-                passwd: ''
+                password: ''
             }
         },
         methods: {
-            login_func() {
-                if (!this.username || !this.passwd) {
+            async login_func() {
+                // 登录
+                // 校验用户名和密码是否正确
+                if (!this.username || !this.password) {
                     this.$message({
                         message: "请输入用户名或密码",
                         type: "warning",
                         duration: 1000,
                     });
+                } else {
+                    // 登录
+                    let data = {
+                        username: this.username,
+                        password: this.password
+                    }
+                    let res_data = await this.$api.login(data)
+                    this.$message({
+                        message: "登录成功",
+                        type: "success",
+                        duration: 1000,
+                    });
+                    this.$cookies.set("pic_token",res_data.jwt,'7d')
+                    this.$router.push('/')
                 }
             }
         }
