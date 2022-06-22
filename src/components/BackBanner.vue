@@ -18,12 +18,14 @@
                 flag: 0
             };
         },
-        created() {
-            for (let i = 0; i < 10; i++) {
-                // this.$axios.get("/?lx=dongman&format=json").then(response => {
-                //     this.img_list.push(response.data.imgurl)
-                // });
-            }
+        async created() {
+            let res_data = await (async function (f) {
+                return await f(1, 10)
+            })(this.$api.get_banner);
+            res_data.data.image_urls.forEach(item => {
+                this.img_list.push(this.$api.base_url + item)
+            })
+
 
         },
         mounted() {
