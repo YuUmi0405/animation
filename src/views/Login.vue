@@ -69,13 +69,15 @@
                         password: this.password
                     }
                     let res_data = await this.$api.login(data)
-                    this.$message({
-                        message: "登录成功",
-                        type: "success",
-                        duration: 1000,
-                    });
-                    this.$cookies.set("pic_token",res_data.jwt,'7d')
-                    this.$router.push('/')
+                    if (res_data.code === 200) {
+                        this.$message({
+                            message: "登录成功",
+                            type: "success",
+                            duration: 1000,
+                        });
+                        this.$cookies.set("pic_token", res_data.data.jwt, '7d')
+                        this.$router.push('/')
+                    }
                 }
             }
         }

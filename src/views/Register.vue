@@ -11,17 +11,20 @@
                     </div>
                     <br>
                     <div class="inp">
-                        <el-input name="passwd" v-model="passwd" placeholder="密码" show-password></el-input>
+                        <el-input name="password" v-model="password" placeholder="密码" show-password></el-input>
                     </div>
                     <br>
                     <div class="inp">
-                        <el-input name="ck_passwd" v-model="ck_passwd" placeholder="确认密码" show-password></el-input>
+                        <el-input name="ck_password" v-model="ck_password" placeholder="确认密码" show-password></el-input>
                     </div>
 
                     <br>
-                    <button name="register" class="signup_button" @click="register_func">注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
+                    <button name="register" class="signup_button" @click="register_func">注&nbsp;&nbsp;&nbsp;&nbsp;册
+                    </button>
                     <br>
-                    <router-link to="login"><button class="back_button">返&nbsp;&nbsp;&nbsp;&nbsp;回</button></router-link>
+                    <router-link to="login">
+                        <button class="back_button">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
+                    </router-link>
                     <br>
                     <div class="terms">@posted sadnesspineapple</div>
                 </div>
@@ -36,35 +39,36 @@
 <script>
     import '@/assets/css/register.css'
     import BackBanner from "../components/BackBanner";
+
     export default {
         name: "register",
-        components:{
+        components: {
             BackBanner
         },
         data() {
             return {
                 username: "",
-                passwd: "",
-                ck_passwd: ""
+                password: "",
+                ck_password: ""
             }
         },
         methods: {
-            register_func() {
+            async register_func() {
 
-                if (!this.username || !this.passwd) {
+                if (!this.username || !this.password) {
                     // 校验密码是否输入
                     this.$message({
                         message: "请输入用户名或密码",
                         type: "warning",
                         duration: 1000,
                     });
-                } else if (!this.ck_passwd) {
+                } else if (!this.ck_password) {
                     this.$message({
                         message: "请再次输入密码",
                         type: "warning",
                         duration: 1000,
                     });
-                } else if (this.passwd !== this.ck_passwd) {
+                } else if (this.password !== this.ck_password) {
                     this.$message({
                         message: "两次密码不一致",
                         type: "warning",
@@ -75,8 +79,13 @@
                         username: this.username,
                         password: this.password
                     }
-                    let res_data = this.$api.register(data)
+                    let res_data = await this.$api.register(data)
+                    alert(res_data)
                     console.log(res_data)
+                    if (res_data.code === 200) {
+                        this.$router.push('/login')
+                    }
+
                 }
             }
         }

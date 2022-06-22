@@ -13,7 +13,7 @@ async function axios_post(url, data) {
                 duration: 1000
             })
         }
-        res_data = res.data.data
+        res_data = res.data
     }).catch(err => {
         console.log(err)
     })

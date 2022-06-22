@@ -45,10 +45,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 //如果去往登录页则放行
-    if (to.path === '/login') {
+    if (to.path === '/login' || to.path === '/register') {
         next();
     } else {
-        // 从本地存储里获取token
+        // 从cookie里获取token
         let token = cookies.get("pic_token")
         // 判断token是否为空如果为空则跳转到登录页 如果有则放行
         if (token === null || token === '') {
