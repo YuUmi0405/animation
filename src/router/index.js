@@ -5,8 +5,8 @@ import Login from "../views/Login";
 import Home from "../views/Home";
 import ForgetPasswd from "../views/ForgetPasswd";
 import ImageDetail from "../views/ImageDetail";
-import cookies from 'vue-cookies'
 import {Message} from 'element-ui'
+import {getToken} from "../utils/auth";
 
 Vue.use(VueRouter)
 
@@ -49,7 +49,7 @@ router.beforeEach((to, from, next) => {
         next();
     } else {
         // 从cookie里获取token
-        let token = cookies.get("pic_token")
+        let token = getToken("pic_token")
         // 判断token是否为空如果为空则跳转到登录页 如果有则放行
         if (token === null || token === '') {
             Message.error({

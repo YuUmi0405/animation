@@ -1,12 +1,12 @@
 import Cookie from 'js-cookie'
 
-const TokenKey = 'token'
+const TokenKey = 'pic_token'
 
 export function getToken() {
   return Cookie.get(TokenKey)
 }
 
-export function setToke(token) {
+export function setToken(token) {
   return Cookie.set(TokenKey, token)
 }
 

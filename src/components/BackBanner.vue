@@ -3,7 +3,9 @@
     <div class="slide">
         <transition name="fade" mode="out-in">
             <img v-bind:key="img_url" class="wallpaper" :src="img_url"/>
+            <!--            <img v-bind:key="next_url" v-show="show" class="wallpaper" :src="next_url"/>-->
         </transition>
+
     </div>
 </template>
 
@@ -12,7 +14,6 @@
         name: "back_banner",
         data() {
             return {
-                show: true,
                 img_url: require("../assets/img/icon2.png"),
                 img_list: [],
                 flag: 0
@@ -29,27 +30,36 @@
 
         },
         mounted() {
-            console.log(this.img_list)
-            console.log(this.img_list[this.flag])
-
             setInterval(() => {
+                console.log(this.flag)
                 this.img_url = this.img_list[this.flag]
                 this.flag += 1
                 if (this.flag === 10) {
                     this.flag = 0
                 }
-            }, 5000)
+            }, 15000)
 
         },
+        methods:{
+            sleep(d) {
+                return new Promise((resolve) => setTimeout(resolve, d))
+            }
+        }
     };
 </script>
 
 <style scoped>
-    .fade-enter-active, .fade-leave-active {
+     .fade-leave-active {
         transition: opacity 1s;
     }
-
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+     .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 60%;
+    }
+     .fade-enter-active {
+        transition: opacity 0.5s;
+    }
+     .fade-enter/* .fade-leave-active below version 2.1.8 */
     {
         opacity: 0;
     }

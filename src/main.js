@@ -1,4 +1,3 @@
-import cookies from 'vue-cookies'
 import router from './router/index'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Vue from 'vue'
@@ -13,9 +12,6 @@ import 'swiper/swiper-bundle.css'
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-// Vue.config.errorHandler = errorHandler;
-Vue.prototype.$cookies = cookies;
-// Vue.prototype.$settings = settings
 Vue.prototype.$api = api
 Vue.prototype.$throw = (error) => errorHandler(error, this);
 

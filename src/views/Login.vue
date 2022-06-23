@@ -40,6 +40,7 @@
 <script>
     import '@/assets/css/register.css'
     import BackBanner from "../components/BackBanner";
+    import {setToken} from "../utils/auth";
 
     export default {
         name: "Login",
@@ -75,7 +76,7 @@
                             type: "success",
                             duration: 1000,
                         });
-                        this.$cookies.set("pic_token", res_data.data.jwt, '7d')
+                        setToken(res_data.data.jwt)
                         this.$router.push('/')
                     }
                 }

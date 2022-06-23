@@ -1,17 +1,27 @@
 import axios from "axios";
+import {getToken} from "../../utils/auth";
 
-import {Message} from 'element-ui'
+const service = axios.create({
+  baseURL: '',
+  timeout: 60000
+})
 
+service.interceptors.request.use(
+  (config) => {
+    const token = getToken()
+    if (token) {
+      config.headers.Authorization = token
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 async function axios_post(url, data) {
     let res_data
-    await axios.post(url, data).then(res => {
-        if (res.data.code !== 200) {
-            Message.error({
-                message: res.data.message,
-                duration: 1000
-            })
-        }
+    await service.post(url, data).then(res => {
         res_data = res.data
     }).catch(err => {
         console.log(err)
@@ -21,13 +31,7 @@ async function axios_post(url, data) {
 
 async function axios_get(url) {
     let res_data
-    await axios.get(url).then(res => {
-        if (res.data.code !== 200) {
-            Message.error({
-                message: res.data.message,
-                duration: 1000
-            })
-        }
+    await service.get(url).then(res => {
         res_data = res.data
     }).catch(err => {
         console.log(err)
