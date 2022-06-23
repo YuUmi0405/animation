@@ -19,19 +19,20 @@
                 flag: 0
             };
         },
-        async created() {
-            let res_data = await (async function (f) {
-                return await f(1, 10)
-            })(this.$api.get_banner);
-            res_data.data.image_urls.forEach(item => {
-                this.img_list.push(this.$api.base_url + item)
+        created() {
+            //获取首页背景轮播图
+            let res_data
+            res_data = this.$api.get_banner(1, 10)
+            res_data.then(res => {
+                res.data.data.image_urls.forEach(item => {
+                    this.img_list.push(this.$api.base_url + item)
+                })
             })
 
 
         },
         mounted() {
             setInterval(() => {
-                console.log(this.flag)
                 this.img_url = this.img_list[this.flag]
                 this.flag += 1
                 if (this.flag === 10) {
@@ -40,7 +41,7 @@
             }, 15000)
 
         },
-        methods:{
+        methods: {
             sleep(d) {
                 return new Promise((resolve) => setTimeout(resolve, d))
             }
@@ -49,17 +50,20 @@
 </script>
 
 <style scoped>
-     .fade-leave-active {
+    .fade-leave-active {
         transition: opacity 1s;
     }
-     .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+
+    .fade-leave-to /* .fade-leave-active below version 2.1.8 */
     {
         opacity: 60%;
     }
-     .fade-enter-active {
+
+    .fade-enter-active {
         transition: opacity 0.5s;
     }
-     .fade-enter/* .fade-leave-active below version 2.1.8 */
+
+    .fade-enter /* .fade-leave-active below version 2.1.8 */
     {
         opacity: 0;
     }

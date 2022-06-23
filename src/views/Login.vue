@@ -54,7 +54,7 @@
             }
         },
         methods: {
-            async login_func() {
+            login_func() {
                 // 登录
                 // 校验用户名和密码是否正确
                 if (!this.username || !this.password) {
@@ -69,16 +69,24 @@
                         username: this.username,
                         password: this.password
                     }
-                    let res_data = await this.$api.login(data)
-                    if (res_data.code === 200) {
-                        this.$message({
-                            message: "登录成功",
-                            type: "success",
-                            duration: 1000,
-                        });
-                        setToken(res_data.data.jwt)
-                        this.$router.push('/')
-                    }
+                    let res_data = this.$api.login(data)
+                    res_data.then(res => {
+                        if (res.data.code === 200) {
+                            this.$message({
+                                message: "登录成功",
+                                type: "success",
+                                duration: 1000,
+                            });
+                            setToken(res_data.data.jwt)
+                            this.$router.push('/')
+                        } else {
+                            this.$message({
+                                message: res.data.message,
+                                type: "error",
+                                duration: 1000
+                            })
+                        }
+                    })
                 }
             }
         }

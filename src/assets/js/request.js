@@ -1,42 +1,47 @@
 import axios from "axios";
 import {getToken} from "../../utils/auth";
+import da from "element-ui/src/locale/lang/da";
 
 const service = axios.create({
-  baseURL: '',
-  timeout: 60000
+    baseURL: '',
+    timeout: 60000
 })
 
 service.interceptors.request.use(
-  (config) => {
-    const token = getToken()
-    if (token) {
-      config.headers.Authorization = token
+    (config) => {
+        const token = getToken()
+        if (token) {
+            config.headers.Authorization = token
+        }
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
     }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
 )
 
-async function axios_post(url, data) {
-    let res_data
-    await service.post(url, data).then(res => {
-        res_data = res.data
-    }).catch(err => {
-        console.log(err)
+function axios_post(url, data) {
+    return new Promise((resolve, reject) => {
+        service.post(url, data).then(res => {
+            resolve(res)
+        }).catch(err => {
+            err = error ? error : err
+            message.error(err, 1)
+            reject(err)
+        })
     })
-    return res_data
 }
 
-async function axios_get(url) {
-    let res_data
-    await service.get(url).then(res => {
-        res_data = res.data
-    }).catch(err => {
-        console.log(err)
+function axios_get(url) {
+    return new Promise((resolve, reject) => {
+        service.get(url).then(res => {
+            resolve(res)
+        }).catch(err => {
+            err = error ? error : err
+            message.error(err, 1)
+            reject(err)
+        })
     })
-    return res_data
 }
 
 

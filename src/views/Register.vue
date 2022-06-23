@@ -53,7 +53,7 @@
             }
         },
         methods: {
-            async register_func() {
+            register_func() {
 
                 if (!this.username || !this.password) {
                     // 校验密码是否输入
@@ -79,12 +79,18 @@
                         username: this.username,
                         password: this.password
                     }
-                    let res_data = await this.$api.register(data)
-                    alert(res_data)
-                    console.log(res_data)
-                    if (res_data.code === 200) {
-                        this.$router.push('/login')
-                    }
+                    let res_data = this.$api.register(data)
+                    res_data.then(res => {
+                        if (res.data.code === 200) {
+                            this.$router.push('/login')
+                        }else {
+                            this.$message({
+                                message:res.data.message,
+                                type:"error",
+                                duration:1000
+                            })
+                        }
+                    })
 
                 }
             }
