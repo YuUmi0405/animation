@@ -78,42 +78,48 @@
             }
         },
         created() {
-            let res_data
-            res_data = this.$api.get_image_info(1, 10)
-            res_data.then(res=>{
-                res.data.data.forEach(item=>{
-                    console.log(item)
-                    this.url_list.push(this.$api.base_url + item.url)
-                })
-                console.log(this.url_list)
-            })
         },
         methods: {
             mouse_move() {
                 this.progress = this.$swiper.progress
             },
             slidePrev() {
-
                 this.$swiper.slidePrev()
                 this.progress = this.$swiper.progress
 
             },
             slideNext() {
-
                 this.$swiper.slideNext()
                 this.progress = this.$swiper.progress
+            },
+            push_url(res) {
+                res.data.data.forEach(item => {
+                    console.log(item)
+                    this.url_list.push(this.$api.base_url + item.url)
+                })
+            },
+            load_swiper() {
+                this.$swiper = new Swiper('.recommend-work', {
+
+                    virtual: true,
+                    // loop: true,
+                    // observer:true,
+                    slidesPerView: 'auto',
+                    slidesPerGroup: 3,
+                    watchSlidesProgress: true,
+                })
             }
         },
         mounted() {
-            this.$swiper = new Swiper('.recommend-work', {
-
-                virtual: true,
-                // loop: true,
-                // observer:true,
-                slidesPerView: 'auto',
-                slidesPerGroup: 3,
-                watchSlidesProgress: true,
+            let res_data
+            res_data = this.$api.get_image_info(1, 10)
+            res_data.then(res => {
+                //先推url到数组，swiper长度根据数组长度来
+                this.push_url(res)
+            }).then(()=>{
+                this.load_swiper()
             })
+
         },
 
 
