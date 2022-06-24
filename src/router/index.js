@@ -49,9 +49,10 @@ router.beforeEach((to, from, next) => {
         next();
     } else {
         // 从cookie里获取token
+        // alert("我走了")
         let token = getToken("pic_token")
         // 判断token是否为空如果为空则跳转到登录页 如果有则放行
-        if (token === null || token === '') {
+        if (!token) {
             Message.error({
                 message: "请先登录",
                 duration: 1000
