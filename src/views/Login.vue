@@ -77,7 +77,7 @@
                                 type: "success",
                                 duration: 1000,
                             });
-                            setToken(res_data.data.jwt)
+                            setToken(res.data.jwt)
                             this.$router.push('/')
                         } else {
                             this.$message({
