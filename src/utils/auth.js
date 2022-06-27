@@ -1,15 +1,16 @@
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
 
 const TokenKey = 'pic_token'
 
 export function getToken() {
-  return Cookie.get(TokenKey)
+  console.log(Cookies.get())
+  return Cookies.get(TokenKey)
 }
 
 export function setToken(token) {
-  return Cookie.set(TokenKey, token)
+  return Cookies.set(TokenKey, token)
 }
 
 export function removeToken() {
-  return Cookie.remove(TokenKey)
+  return Cookies.remove(TokenKey)
 }

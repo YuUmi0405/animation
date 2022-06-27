@@ -6,6 +6,7 @@ const register_api = base_url + url_prefix + '/register'
 const login_api = base_url + url_prefix + '/login'
 const banner_api = base_url + url_prefix + '/banners'
 const images_api = base_url + url_prefix + '/images'
+const collect_or_cancel_api = base_url + url_prefix + '/collect_or_cancel'
 
 function register(data) {
     return axios_post(register_api, data)
@@ -29,10 +30,15 @@ function get_image_info(page, page_size) {
 
 }
 
+function collect_or_cancel(data) {
+    return axios_post(collect_or_cancel_api, data)
+}
+
 export default {
     base_url: base_url,
     register: register,
     login: login,
     get_banner: get_banner,
-    get_image_info: get_image_info
+    get_image_info: get_image_info,
+    collect_or_cancel: collect_or_cancel
 }

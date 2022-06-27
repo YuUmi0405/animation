@@ -14,9 +14,15 @@
 
         <div v-else :id="slot_type" :class="slot_type" v-on:mousemove="mouse_move">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="url in url_list" v-bind:key="url">
+                <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="url">
                     <div class="concern_work_img">
-                        <el-image style="width: 100%;height: 100%" :src="url" :fit="'fill'"></el-image>
+                        <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'fill'"></el-image>
+                        <svg t="1656314860240" @click="collect_or_cancel($event,item.id)" class="icon love"
+                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2371"
+                             width="200" height="200">
+                            <path d="M739.584 70.592c-92.224 0-177.792 63.04-228.224 109.568C460.864 133.632 375.36 70.592 283.008 70.592 108.48 70.592 0 176.96 0 348.16 0 492.8 130.688 608.256 131.2 608.64l340.544 328.512c10.432 10.432 24.448 16.256 39.552 16.256s29.056-5.824 39.296-16l341.248-328.64c30.656-29.376 130.752-134.848 130.752-260.544C1022.656 176.96 914.176 70.592 739.584 70.592z"
+                                  p-id="2372" fill="#ffffff"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -88,6 +94,7 @@
 
 <script>
     import Swiper from "swiper"
+    import {valid_status} from "../../../../assets/js/utils";
     // import '@/assets/css/next_pre_button.css'
 
     export default {
@@ -98,7 +105,7 @@
         data() {
             return {
                 fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-                url_list: [],
+                image_info_list: [],
                 count: 0,
                 progress: 0,
 
@@ -107,8 +114,6 @@
 
         methods: {
             mouse_move() {
-                console.log(this.$swiper.progress)
-                // log( this.$swiper.progress)
                 this.progress = this.$swiper.progress
 
             },
@@ -123,9 +128,11 @@
                 this.progress = this.$swiper.progress
             },
             push_url(res) {
+                console.log(res)
                 res.data.data.forEach(item => {
-                    this.url_list.push(this.$api.base_url + item.url)
+                    item.url = this.$api.base_url + item.url
                 })
+                this.image_info_list = res.data.data
             },
             load_swiper() {
                 this.$swiper = new Swiper("." + this.slot_type, {
@@ -136,18 +143,25 @@
                     slidesPerGroup: 3,
                     watchSlidesProgress: true
                 })
-                // this.count = swiper
 
             },
             get_concern_work_image_info() {
                 let res_data
                 res_data = this.$api.get_image_info(1, 10)
                 res_data.then(res => {
-                    //先推url到数组，swiper长度根据数组长度来
-                    this.push_url(res)
+                    let flag = valid_status(res)
+                    if (flag) {
+                        //先推url到数组，swiper长度根据数组长度来
+                        this.push_url(res)
+                    }
+
                 }).then(() => {
                     this.load_swiper()
                 })
+            },
+            collect_or_cancel(id) {
+                alert(id)
+                this.$api.collect_or_cancel({"id": id})
             }
         },
         mounted() {
