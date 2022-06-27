@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import {getToken} from "../../utils/auth";
+
 export default {
   name: "Avatar",
   data() {
@@ -31,6 +33,10 @@ export default {
       is_login: false,
     };
   },
+  created() {
+    let token = getToken()
+    this.is_login = !!token;
+  }
 };
 </script>
 

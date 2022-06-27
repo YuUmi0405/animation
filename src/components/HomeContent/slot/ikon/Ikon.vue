@@ -3,22 +3,22 @@
     <Model>
       <template v-slot:tags>
         <!-- 漫画标签 -->
-        <IkonTag></IkonTag>
+        <ImageTag :slot_type="slot_type[0]"></ImageTag>
       </template>
 
       <!--关注用户的作品-->
       <template v-slot:concern_work>
-        <ConcernWork ></ConcernWork>
+        <ImageConcern :slot_type="slot_type[1]"></ImageConcern>
       </template>
 
       <!--推荐作品-->
       <template v-slot:recommend_work>
-        <RecommendWork></RecommendWork>
+        <ImageRecommend :slot_type="slot_type[2]"></ImageRecommend>
       </template>
 
       <!--排行榜-->
       <template v-slot:ranking_list>
-        <RankList></RankList>
+        <ImageRank :slot_type="slot_type[3]"></ImageRank>
       </template>
 
 
@@ -29,19 +29,23 @@
 
 <script>
 import Model from '../../Model'
-import IkonTag from './IkonTag'
-import ConcernWork from './ConcernWork'
-import RecommendWork from './RecommendWork'
-import RankList from './RankList'
+import ImageTag from "./ImageSlide";
+import ImageConcern from "./ImageSlide";
+import ImageRecommend from "./ImageSlide";
+import ImageRank from "./ImageSlide";
 export default {
   components: {
     Model,
-    IkonTag,
-    ConcernWork,
-    RecommendWork,
-    RankList
+    ImageTag,
+    ImageConcern,
+    ImageRecommend,
+    ImageRank
+
   },
-  methods:{
+  data(){
+    return {
+      slot_type: ["image_tag","concern_work","recommend_work","rank_list"]
+    }
   }
 
 }
