@@ -17,11 +17,20 @@
                 <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="url">
                     <div class="concern_work_img">
                         <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'fill'"></el-image>
-                        <svg t="1656314860240" @click="collect_or_cancel($event,item.id)" class="icon love"
+                        <svg v-if="!item.love" t="1656314860240" @click="collect_or_cancel(item.id,$event)"
+                             class="icon love"
                              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2371"
                              width="200" height="200">
+                            <path
+                                    d="M739.584 70.592c-92.224 0-177.792 63.04-228.224 109.568C460.864 133.632 375.36 70.592 283.008 70.592 108.48 70.592 0 176.96 0 348.16 0 492.8 130.688 608.256 131.2 608.64l340.544 328.512c10.432 10.432 24.448 16.256 39.552 16.256s29.056-5.824 39.296-16l341.248-328.64c30.656-29.376 130.752-134.848 130.752-260.544C1022.656 176.96 914.176 70.592 739.584 70.592z"
+                                    p-id="2372" fill="#ffffff"></path>
+                        </svg>
+
+                        <svg v-else @click="collect_or_cancel(item.id,$event)" t="1656385846990" class="icon love"
+                             viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="2373" width="200" height="200">
                             <path d="M739.584 70.592c-92.224 0-177.792 63.04-228.224 109.568C460.864 133.632 375.36 70.592 283.008 70.592 108.48 70.592 0 176.96 0 348.16 0 492.8 130.688 608.256 131.2 608.64l340.544 328.512c10.432 10.432 24.448 16.256 39.552 16.256s29.056-5.824 39.296-16l341.248-328.64c30.656-29.376 130.752-134.848 130.752-260.544C1022.656 176.96 914.176 70.592 739.584 70.592z"
-                                  p-id="2372" fill="#ffffff"></path>
+                                  p-id="2374" fill="#d81e06"></path>
                         </svg>
                     </div>
                 </div>
@@ -108,6 +117,7 @@
                 image_info_list: [],
                 count: 0,
                 progress: 0,
+                is_love: 0
 
             }
         },
@@ -117,7 +127,6 @@
                 this.progress = this.$swiper.progress
 
             },
-
             slidePrev() {
                 this.$swiper.slidePrev()
                 this.progress = this.$swiper.progress
@@ -160,8 +169,17 @@
                 })
             },
             collect_or_cancel(id) {
-                alert(id)
-                this.$api.collect_or_cancel({"id": id})
+                let res_data = this.$api.collect_or_cancel({"id": id})
+                res_data.then(res => {
+                    let flag = valid_status(res)
+                    if (flag) {
+                        this.image_info_list.forEach(item => {
+                            if (item.id === id) {
+                                item.love = !item.love
+                            }
+                        })
+                    }
+                })
             }
         },
         mounted() {
@@ -185,8 +203,8 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 20%;
-        height: 20%;
+        width: 16%;
+        height: 16%;
     }
 
     .evaGFr {
@@ -200,6 +218,12 @@
 
     #concern_button:hover button {
         opacity: 1;
+    }
+
+    .love:hover {
+        width: 18%;
+        height: 18%;
+        cursor: pointer;
     }
 
     .concern_button {
