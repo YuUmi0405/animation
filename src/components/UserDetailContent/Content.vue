@@ -6,8 +6,10 @@
                 <el-aside width="200px">
                     <el-upload
                             class="avatar-uploader"
-                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :action="this.$api.upload_avator_api"
                             :show-file-list="false"
+                            :headers="heads"
+                            :name="avatar_name"
                             :on-success="handleAvatarSuccess"
                             :before-upload="beforeAvatarUpload">
                         <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -22,6 +24,8 @@
 
 <script>
     import {mapState} from "vuex";
+    import {valid_status} from "../../assets/js/utils";
+    import {getToken} from "../../utils/auth";
 
     export default {
         name: "Content",
@@ -31,14 +35,15 @@
         data() {
             return {
                 imageUrl: '',
+                heads:{
+                    "Authorization":getToken()
+                },
+                avatar_name:"avatar"
             };
         },
         methods: {
             handleAvatarSuccess(res, file) {
-                var data = new FormData();
-                // 创建一个表单数据
-                data.append("avatar", file.raw);
-                this.$api.base_url
+                console.log(res)
                 this.imageUrl = URL.createObjectURL(file.raw);
             },
             beforeAvatarUpload(file) {

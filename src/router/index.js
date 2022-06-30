@@ -9,6 +9,7 @@ import UserDetail from "../views/UserDetail";
 import {Message} from 'element-ui'
 import {getToken} from "../utils/auth";
 import {get_user_info} from "../assets/js/api";
+import {store} from "../main";
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,7 @@ const routes = [
         path: '/image_detail',
         name: 'ImageDetail',
         component: ImageDetail
-    },{
+    }, {
         path: '/user_detail',
         name: 'UserDetail',
         component: UserDetail
@@ -54,9 +55,9 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login' || to.path === '/register') {
         next();
     } else {
+
         // 从cookie里获取token
         let token = getToken()
-        let user_info = get_user_info()
         // 判断token是否为空如果为空则跳转到登录页 如果有则放行
         if (!token) {
             Message.error({
@@ -65,7 +66,17 @@ router.beforeEach((to, from, next) => {
             })
             next({path: '/login'});
         } else {
-            next();
+            //如果数据既不在sessionStorage也不再vuex中，发送请求，获取数据
+            if (!store.state.user_info && !sessionStorage.getItem('user_info')) {
+                let result = get_user_info()
+                result.then(res => {
+                    store.dispatch('saveUserInfo', res.data.data);//请求回来后，把用户信息存储到VUEX里
+                    next();
+                })
+            }else{
+                next();
+            }
+
         }
     }
 });

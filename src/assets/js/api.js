@@ -9,7 +9,7 @@ const banner_api = base_url + url_prefix + '/banners'
 const images_api = base_url + url_prefix + '/images'
 const collect_or_cancel_api = base_url + url_prefix + '/collect_or_cancel'
 const user_info_api = base_url + url_prefix + '/user_info'
-const upload_avator_api = base_url + url_prefix + '/user_info'
+const upload_avator_api = base_url + url_prefix + '/upload_avatar'
 
 function register(data) {
     return axios_post(register_api, data)
@@ -52,5 +52,5 @@ export default {
     get_banner: get_banner,
     get_image_info: get_image_info,
     collect_or_cancel: collect_or_cancel,
-    upload_avator: upload_avator_api
+    upload_avator_api: upload_avator_api
 }

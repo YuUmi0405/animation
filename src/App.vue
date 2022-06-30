@@ -8,6 +8,7 @@
 
 
     import {mapState} from "vuex";
+    import {get_user_info} from "./assets/js/api";
 
     export default {
         name: 'app',
@@ -15,9 +16,18 @@
             user_info: state => state.user_info
         }),
         created() {
+            //如果数据既不在sessionStorage也不再vuex中，发送请求，获取数据
+            if (!this.user_info && !sessionStorage.getItem('user_info')) {
+                let result = get_user_info()
+                result.then(res => {
+                    console.log(res.data)
+                    this.$store.dispatch('saveUserInfo', res.data.data);//请求回来后，把用户信息存储到VUEX里
+                })
+            }
+
             // 在页面加载时读取sessionStorage里的状态信息
             if (sessionStorage.getItem('user_info')) {
-                this.$store.dispatch('saveUserInfo',  JSON.parse(sessionStorage.getItem('user_info')));//请求回来后，把用户信息存储到VUEX里
+                this.$store.dispatch('saveUserInfo', JSON.parse(sessionStorage.getItem('user_info')));//请求回来后，把用户信息存储到VUEX里
 
             }
             // 在页面刷新时将vuex里的信息保存到sessionStorage里,beforeunload事件在页面刷新时先触发
