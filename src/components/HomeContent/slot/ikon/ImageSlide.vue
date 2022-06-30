@@ -14,7 +14,7 @@
 
         <div v-else :id="slot_type" :class="slot_type" v-on:mousemove="mouse_move">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="url">
+                <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="item.url">
                     <div class="concern_work_img">
                         <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'fill'"></el-image>
                         <svg v-if="!item.love" t="1656314860240" @click="collect_or_cancel(item.id,$event)"
@@ -137,7 +137,6 @@
                 this.progress = this.$swiper.progress
             },
             push_url(res) {
-                console.log(res)
                 res.data.data.forEach(item => {
                     item.url = this.$api.base_url + item.url
                 })

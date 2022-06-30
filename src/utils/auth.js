@@ -3,7 +3,6 @@ import Cookies from 'js-cookie'
 const TokenKey = 'pic_token'
 
 export function getToken() {
-  console.log(Cookies.get())
   return Cookies.get(TokenKey)
 }
 

@@ -13,7 +13,7 @@
                         <el-input name="password" v-model="password" placeholder="密码" show-password></el-input>
                     </div>
                     <br>
-                    <button name="login" class="signup_button" @click="login_func">登录</button>
+                    <button name="login" class="signup_button" @click="login">登录</button>
                     <div class="signup-form-nav">
                         <span class="signup-form-nav-left">新用户?
                             <router-link to="/register"><span style="color:#409EFF">注册</span></router-link>
@@ -41,6 +41,7 @@
     import '@/assets/css/register.css'
     import BackBanner from "../components/BackBanner";
     import {setToken} from "../utils/auth";
+    import {get_user_info} from "../assets/js/api";
 
     export default {
         name: "Login",
@@ -54,7 +55,7 @@
             }
         },
         methods: {
-            login_func() {
+            login() {
                 // 登录
                 // 校验用户名和密码是否正确
                 if (!this.username || !this.password) {
@@ -79,6 +80,14 @@
                             });
 
                             setToken(res.data.data.jwt)
+
+                            // 获取用户信息
+                            let result = get_user_info()
+                            result.then(res=>{
+                                console.log(res.data)
+                                this.$store.dispatch('saveUserInfo',res.data.data);//请求回来后，把用户信息存储到VUEX里
+                            })
+
                             this.$router.push('/')
                         } else {
                             this.$message({

@@ -5,8 +5,10 @@ import Login from "../views/Login";
 import Home from "../views/Home";
 import ForgetPasswd from "../views/ForgetPasswd";
 import ImageDetail from "../views/ImageDetail";
+import UserDetail from "../views/UserDetail";
 import {Message} from 'element-ui'
 import {getToken} from "../utils/auth";
+import {get_user_info} from "../assets/js/api";
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,10 @@ const routes = [
         path: '/image_detail',
         name: 'ImageDetail',
         component: ImageDetail
+    },{
+        path: '/user_detail',
+        name: 'UserDetail',
+        component: UserDetail
     },
 
 
@@ -50,6 +56,7 @@ router.beforeEach((to, from, next) => {
     } else {
         // 从cookie里获取token
         let token = getToken()
+        let user_info = get_user_info()
         // 判断token是否为空如果为空则跳转到登录页 如果有则放行
         if (!token) {
             Message.error({
