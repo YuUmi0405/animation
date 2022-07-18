@@ -84,7 +84,6 @@
                             // 获取用户信息
                             let result = get_user_info()
                             result.then(res=>{
-                                console.log(res.data)
                                 this.$store.dispatch('saveUserInfo',res.data.data);//请求回来后，把用户信息存储到VUEX里
                             })
 

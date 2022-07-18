@@ -6,7 +6,9 @@
             </el-col>
             <el-col :span="2">
                 <!--Logo-->
-                <img v-bind:key="img_url" :src="img_url" style="height:50px"/>
+                <router-link to="/">
+                    <img v-bind:key="img_url" :src="img_url" style="height:50px"/>
+                </router-link>
             </el-col>
             <el-col :offset="5" :span="5" class="search">
                 <el-input placeholder="搜索作品">
