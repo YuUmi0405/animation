@@ -1,7 +1,7 @@
 import {axios_post, axios_get} from './request.js'
 import da from "element-ui/src/locale/lang/da";
 
-const base_url = 'http://127.0.0.1:5001'
+const base_url = '/api'
 const url_prefix = "/api/v1"
 const register_api = base_url + url_prefix + '/register'
 const login_api = base_url + url_prefix + '/login'
