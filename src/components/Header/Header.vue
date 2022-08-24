@@ -10,15 +10,13 @@
           <img v-bind:key="img_url" :src="img_url" style="height:50px"/>
         </router-link>
       </el-col>
-      <el-col :offset="5" :span="5" class="search">
+      <el-col :offset="6" :span="5" class="search">
         <el-input placeholder="搜索作品" class="search_input">
           <i slot="prefix" class="el-input__icon el-icon-search "></i>
         </el-input>
       </el-col>
-      <el-col :offset="2" :span="1">
-        <span class="add_member">加入会员</span>
-      </el-col>
-      <el-col :span="2" :offset="1">
+
+      <el-col :span="2" :offset="2">
         <el-dropdown trigger="click">
           <el-button round>
             投稿作品<i class="el-icon-arrow-down el-icon--right"></i>

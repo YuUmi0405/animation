@@ -8,7 +8,7 @@
 
     <el-container>
       <el-aside width="356px"></el-aside>
-      <el-aside width="250px" class="user_menu_left">
+      <el-aside width="250px" class="user_left_menu">
         <el-upload
             class="avatar-uploader"
             :action="this.$api.upload_avator_api"
@@ -20,6 +20,29 @@
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
+        <div class="user_left_menu_distance">
+          <span class="user_name">sadnesspineapple</span>
+        </div>
+        <div class="user_left_menu_distance">
+          <span style="font-family: 'GothamBook';">{{ concern_num }}已关注</span>
+        </div>
+        <div class="user_left_menu_distance">
+          <el-button class="user_left_menu_button" style="background: #66CCFF;">
+            <svg t="1661327062536" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 p-id="2082" width="17px" style="position:relative; top:4px;">
+              <path
+                  d="M684.202667 117.248c15.893333-15.872 42.154667-15.36 58.922666 1.408l90.517334 90.517333c16.661333 16.661333 17.344 42.986667 1.429333 58.922667l-445.653333 445.653333c-7.936 7.914667-23.104 16.746667-34.218667 19.776l-143.701333 39.253334c-21.909333 5.994667-35.114667-7.104-29.568-28.949334l37.248-146.773333c2.773333-10.944 11.562667-26.346667 19.392-34.176l445.653333-445.653333zM268.736 593.066667c-2.901333 2.901333-8.106667 12.074667-9.130667 16.021333l-29.12 114.773333 111.957334-30.570666c4.437333-1.216 13.632-6.549333 16.810666-9.728l445.653334-445.653334-90.517334-90.496-445.653333 445.653334zM682.794667 178.986667l90.517333 90.517333-30.186667 30.186667-90.496-90.517334 30.165334-30.165333z m-362.026667 362.048l90.496 90.517333-30.165333 30.165333-90.517334-90.496 30.165334-30.186666zM170.666667 874.666667c0-11.776 9.429333-21.333333 21.461333-21.333334h661.077333a21.333333 21.333333 0 1 1 0 42.666667H192.128A21.333333 21.333333 0 0 1 170.666667 874.666667z"
+                  fill="#ffffff" p-id="2083"></path>
+            </svg>
+            <span>
+              主要按钮
+            </span>
+
+          </el-button>
+        </div>
+        <div class="user_left_menu_distance">
+          <el-button class="user_left_menu_button" style="background: #F8C541;">警告按钮</el-button>
+        </div>
       </el-aside>
       <el-container>
         <el-header></el-header>
@@ -32,8 +55,8 @@
               <div class="demo-image">
                 <el-row>
                   <div class="block" v-for="img_url in img_url_list" :key="img_url">
-                    <el-col :span="4" class="display_img">
-                      <el-image style="width: 100%;height: 100%" :src="img_url" :fit="'fill'"></el-image>
+                    <el-col :span="4" class="display_img_col">
+                      <el-image class="display_img" :src="img_url" :fit="'cover'"></el-image>
                     </el-col>
                   </div>
                 </el-row>
@@ -52,7 +75,7 @@
 import {mapState} from "vuex";
 import {get_static_image_url, valid_status} from "../../assets/js/utils";
 import {getToken} from "../../utils/auth";
-import '@/assets/css/global.css'
+import '@/assets/css/img.css'
 
 export default {
   name: "Content",
@@ -68,10 +91,10 @@ export default {
       avatar_name: "avatar",
       activeName: 'first',
       background_img: require("@/assets/img/icon2.png"),
-      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
       img_url_list: [],
-      imgSrc: require('@/assets/img/user_detail_background.jpg')
+      imgSrc: require('@/assets/img/user_detail_background.jpg'),
+      concern_num: 1
 
     };
   },
@@ -108,7 +131,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .user_header {
   background-image: url("/src/assets/img/icon2.png");
 }
@@ -150,7 +173,7 @@ export default {
   position: absolute;
 }
 
-.user_menu_left {
+.user_left_menu {
   /* Rectangle 10 */
 
   position: absolute;
@@ -165,5 +188,36 @@ export default {
   z-index: 10;
 }
 
+.user_name {
+  font-family: 'GothamBold', "微软雅黑";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #000000;
+
+  mix-blend-mode: normal;
+}
+
+.user_left_menu_distance {
+  margin-top: 10px;
+}
+
+.user_left_menu_button {
+  width: 80%;
+  color: #FFFFFF;
+}
+
+/deep/ .el-button {
+  border-radius: 20px;
+}
+/deep/ .el-button:hover{
+  color: #FFFFFF;
+}
+/deep/ .el-image__inner{
+  height: 184px;
+  width: 184px;
+}
 
 </style>
