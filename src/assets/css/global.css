@@ -20,3 +20,11 @@ table {
 body {
     font-family:”Microsoft YaHei”,Arial,Helvetica,sans-serif,”宋体”;
   }
+
+.display_img {
+
+    height: 184px;
+    margin-right: 30px;
+    margin-top: 30px;
+    /*width: 184px;*/
+}
