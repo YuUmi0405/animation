@@ -15,7 +15,7 @@
     <div v-else :id="slot_type" :class="slot_type" v-on:mousemove="mouse_move">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="item.url">
-          <div class="concern_work_img">
+          <div class="concern_work_img" @click="go_to_image_detail(item.id,$event)">
             <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'cover'"></el-image>
             <svg v-if="!item.love" t="1656314860240" @click="collect_or_cancel(item.id,$event)"
                  class="icon love"
@@ -181,6 +181,9 @@ export default {
           })
         }
       })
+    },
+    go_to_image_detail(id) {
+      this.$router.push('/image_detail/' + id)
     }
   },
   mounted() {

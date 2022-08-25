@@ -32,7 +32,7 @@ const routes = [
         name: 'Forget',
         component: ForgetPasswd
     }, {
-        path: '/image_detail',
+        path: '/image_detail/:id',
         name: 'ImageDetail',
         component: ImageDetail
     }, {

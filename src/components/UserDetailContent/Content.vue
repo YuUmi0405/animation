@@ -11,7 +11,7 @@
       <el-aside width="250px" class="user_left_menu">
         <el-upload
             class="avatar-uploader"
-            :action="this.$api.upload_avator_api"
+            :action="this.$api.upload_avatar_api"
             :show-file-list="false"
             :headers="heads"
             :name="avatar_name"

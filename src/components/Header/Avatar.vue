@@ -16,7 +16,7 @@
           <!-- 下拉设置 -->
           <el-dropdown-item icon="el-icon-star-off">我的收藏</el-dropdown-item>
           <el-dropdown-item icon="el-icon-setting">
-           <router-link to="/user_detail"><span style="color:#409EFF">用户设置</span></router-link>
+           <router-link to="/user_detail">用户设置</router-link>
           </el-dropdown-item>
           <div @click="logout">
             <el-dropdown-item icon="el-icon-back">

@@ -3,14 +3,30 @@ import da from "element-ui/src/locale/lang/da";
 
 const base_url = '/api'
 const url_prefix = "/api/v1"
+//注册登录
 const register_api = base_url + url_prefix + '/register'
 const login_api = base_url + url_prefix + '/login'
+
+//轮播图
 const banner_api = base_url + url_prefix + '/banners'
+
+//插图列表
 const images_api = base_url + url_prefix + '/images'
+
+//收藏取消收藏
 const collect_or_cancel_api = base_url + url_prefix + '/collect_or_cancel'
+
+//用户信息
 const user_info_api = base_url + url_prefix + '/user_info'
-const upload_avator_api = base_url + url_prefix + '/upload_avatar'
+
+//上传用户头像
+const upload_avatar_api = base_url + url_prefix + '/upload_avatar'
+
+//用户关联的插画信息
 const user_rel_image_api = base_url + url_prefix + '/user_rel_image'
+
+//插画详情
+const image_detail_api = base_url + url_prefix + '/image_detail'
 
 function register(data) {
     return axios_post(register_api, data)
@@ -49,6 +65,13 @@ export function get_user_info() {
     return axios_get(user_info_api)
 }
 
+function get_image_detail(image_id) {
+    let image_detail
+    image_detail = (image_detail_api + "?image_id=" + image_id)
+    return axios_get(image_detail)
+
+}
+
 
 export default {
     base_url: base_url,
@@ -57,6 +80,7 @@ export default {
     get_banner: get_banner,
     get_image_info: get_image_info,
     collect_or_cancel: collect_or_cancel,
-    upload_avator_api: upload_avator_api,
-    get_user_rel_image: get_user_rel_image
+    upload_avatar_api: upload_avatar_api,
+    get_user_rel_image: get_user_rel_image,
+    get_image_detail: get_image_detail
 }

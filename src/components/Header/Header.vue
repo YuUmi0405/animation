@@ -1,5 +1,5 @@
 <template>
-  <div id="header" style="margin-top: 10px; min-width: 1200px;height: 55px">
+  <div id="header" style="margin-top: 10px; min-width: 1200px">
     <el-row>
       <el-col :span="1">
         <MenuIcon></MenuIcon>
@@ -7,7 +7,7 @@
       <el-col :span="2">
         <!--Logo-->
         <router-link to="/">
-          <img v-bind:key="img_url" :src="img_url" style="height:50px"/>
+          <img v-bind:key="img_url" :src="img_url" style="height:100%"/>
         </router-link>
       </el-col>
       <el-col :offset="6" :span="5" class="search">
