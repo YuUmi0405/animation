@@ -10,6 +10,7 @@ import {Message} from 'element-ui'
 import {getToken} from "../utils/auth";
 import {get_user_info} from "../assets/js/api";
 import {store} from "../main";
+// import {Navbar} from "../components/navbar";
 
 Vue.use(VueRouter)
 
@@ -38,7 +39,7 @@ const routes = [
         path: '/user_detail',
         name: 'UserDetail',
         component: UserDetail
-    },
+    }
 
 
 ]

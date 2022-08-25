@@ -35,13 +35,13 @@
                   fill="#ffffff" p-id="2083"></path>
             </svg>
             <span>
-              主要按钮
+              修改您的个人信息
             </span>
 
           </el-button>
         </div>
         <div class="user_left_menu_distance">
-          <el-button class="user_left_menu_button" style="background: #F8C541;">警告按钮</el-button>
+          <el-button class="user_left_menu_button" style="background: #F8C541;">加入会员</el-button>
         </div>
       </el-aside>
       <el-container>
@@ -136,7 +136,7 @@ export default {
   background-image: url("/src/assets/img/icon2.png");
 }
 
-.avatar-uploader .el-upload {
+/deep/ .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 50%;
   cursor: pointer;
@@ -178,9 +178,9 @@ export default {
 
   position: absolute;
   width: 376px;
-  height: 821px;
+  height: 600px;
   left: 66px;
-  top: 142px;
+  top: 100px;
 
   background: #FFFFFF;
   box-shadow: 9px 4px 21px rgba(202, 202, 202, 0.25);
