@@ -119,7 +119,7 @@ export default {
       let result = this.$api.get_user_rel_image(this.$page, this.$page_size)
       result.then(res => {
         res.data.data.forEach(r => {
-          this.img_url_list.push(get_static_image_url(r.url))
+          this.img_url_list.push(get_static_image_url(r.thumbnail_url))
         })
       })
     }

@@ -6,11 +6,15 @@ import Home from "../views/Home";
 import ForgetPasswd from "../views/ForgetPasswd";
 import ImageDetail from "../views/ImageDetail";
 import UserDetail from "../views/UserDetail";
+import Contribute from "../views/Contribute.vue";
 import {Message} from 'element-ui'
 import {getToken} from "../utils/auth";
 import {get_user_info} from "../assets/js/api";
 import {store} from "../main";
 // import {Navbar} from "../components/navbar";
+import VueCropper from "vue-cropper";
+
+Vue.use(VueCropper);
 
 Vue.use(VueRouter)
 
@@ -39,6 +43,10 @@ const routes = [
         path: '/user_detail',
         name: 'UserDetail',
         component: UserDetail
+    }, {
+        path: '/contribute',
+        name: 'contribute',
+        component: Contribute
     }
 
 
@@ -74,7 +82,7 @@ router.beforeEach((to, from, next) => {
                     store.dispatch('saveUserInfo', res.data.data);//请求回来后，把用户信息存储到VUEX里
                     next();
                 })
-            }else{
+            } else {
                 next();
             }
 
