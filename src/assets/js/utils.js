@@ -16,3 +16,15 @@ export function valid_status(res) {
 export function get_static_image_url(url) {
     return api.base_url + url
 }
+
+export function objectToFormData(obj) {
+    let formData = new FormData();
+    Object.keys(obj).forEach((key) => {
+        if (obj[key] instanceof Array) {
+            formData.append(key, JSON.stringify(obj[key]));
+            return;
+        }
+        formData.append(key, obj[key]);
+    });
+    return formData;
+}

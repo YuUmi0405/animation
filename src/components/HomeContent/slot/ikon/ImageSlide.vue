@@ -16,7 +16,7 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="item.thumbnail_url">
           <div class="concern_work_img" @click="go_to_image_detail(item.id,$event)">
-            <el-image style="width: 100%;height: 100%" :src="item.thumbnail_url" :fit="'cover'"></el-image>
+            <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'cover'"></el-image>
             <svg v-if="!item.love" t="1656314860240" @click="collect_or_cancel(item.id,$event)"
                  class="icon love"
                  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2371"
@@ -141,8 +141,10 @@ export default {
     push_url(res) {
       res.data.data.forEach(item => {
         item.url = this.$api.base_url + item.thumbnail_url
+        console.log(item.url)
       })
       this.image_info_list = res.data.data
+      console.log(this.image_info_list)
     },
     load_swiper() {
       this.$swiper = new Swiper("." + this.slot_type, {
@@ -159,6 +161,8 @@ export default {
       let res_data
       res_data = this.$api.get_image_info(1, 10)
       res_data.then(res => {
+
+        console.log(res)
         let flag = valid_status(res)
         if (flag) {
           //先推url到数组，swiper长度根据数组长度来

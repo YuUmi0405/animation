@@ -23,6 +23,7 @@
             //获取首页背景轮播图
             let res_data
             res_data = this.$api.get_banner(1, 10)
+            console.log(res_data)
             res_data.then(res => {
                 res.data.data.image_urls.forEach(item => {
                     this.img_list.push(this.$api.base_url + item)

@@ -28,6 +28,9 @@ const user_rel_image_api = base_url + url_prefix + '/user_rel_image'
 //插画详情
 const image_detail_api = base_url + url_prefix + '/image_detail'
 
+//图片上传
+const upload_image_api = base_url + url_prefix + '/upload_image'
+
 function register(data) {
     return axios_post(register_api, data)
 }
@@ -72,6 +75,14 @@ function get_image_detail(image_id) {
 
 }
 
+function upload_image(data) {
+    let config = {
+        headers: {'Content-Type': 'multipart/form-data'}
+    };
+    return axios_post(upload_image_api, data, config)
+
+}
+
 
 export default {
     base_url: base_url,
@@ -82,5 +93,6 @@ export default {
     collect_or_cancel: collect_or_cancel,
     upload_avatar_api: upload_avatar_api,
     get_user_rel_image: get_user_rel_image,
-    get_image_detail: get_image_detail
+    get_image_detail: get_image_detail,
+    upload_image: upload_image
 }

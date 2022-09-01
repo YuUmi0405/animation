@@ -21,13 +21,14 @@ service.interceptors.request.use(
     }
 )
 
-function axios_post(url, data) {
+function axios_post(url, data, config) {
     return new Promise((resolve, reject) => {
-        service.post(url, data).then(res => {
+        service.post(url, data, config).then(res => {
             resolve(res)
         }).catch(err => {
-            err = error ? error : err
-            message.error(err, 1)
+            // console.log(err)
+            // err = error ? error : err
+            // message.error(err, 1)
             reject(err)
         })
     })

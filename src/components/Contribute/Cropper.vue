@@ -104,7 +104,8 @@ export default {
         maxImgSize: 600,    //限制图片最大宽度和高度
         enlarge: 1,          //图片根据截图框输出比例倍数
         // mode: '230px 150px'  //图片默认渲染方式
-      }
+      },
+      original_img: ""
     };
   },
   methods: {
@@ -113,19 +114,7 @@ export default {
       console.log("工具初始化函数=====" + msg)
 
     },
-    //图片缩放
-    changeScale(num) {
-      num = num || 1
-      this.$refs.cropper.changeScale(num)
-    },
-    //向左旋转
-    rotateLeft() {
-      this.$refs.cropper.rotateLeft()
-    },
-    //向右旋转
-    rotateRight() {
-      this.$refs.cropper.rotateRight()
-    },
+
     //实时预览函数
     realTime(data) {
       this.previews = data
@@ -133,6 +122,8 @@ export default {
     },
     //选择图片
     selectImg(e) {
+      this.original_img = e.target.files[0]
+      // console.log(this.previews.original_img)
       let file = e.target.files[0]
       if (!/\.(jpg|jpeg|png|JPG|PNG)$/.test(e.target.value)) {
         this.$message({
@@ -151,7 +142,6 @@ export default {
           data = e.target.result
         }
         this.option.img = data
-        // let img_info = {}
 
 
       }
@@ -166,7 +156,10 @@ export default {
       this.$refs.cropper.getCropBlob(data => {
         this.blobToDataURI(data, (res) => {
           this.previews.blob = res
-          this.$emit('uploadImgSuccess',this.previews);
+          this.previews.thumbnail_img = this.dataURLtoFile(res, "thumbnail_img")
+          this.previews.original_img = this.original_img
+          this.$emit('uploadImgSuccess', this.previews);
+
         })
 
       })
@@ -180,7 +173,18 @@ export default {
       reader.onload = function (e) {
         callback(e.target.result);
       }
-    }
+    },
+    dataURLtoFile(dataurl, filename) {
+      var arr = dataurl.split(',')
+      var mime = arr[0].match(/:(.*?);/)[1]
+      var bstr = atob(arr[1])
+      var n = bstr.length
+      var u8arr = new Uint8Array(n)
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n)
+      }
+      return new File([u8arr], filename, {type: mime})
+    },
   },
 }
 </script>

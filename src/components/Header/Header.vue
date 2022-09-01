@@ -22,10 +22,11 @@
             投稿作品<i class="el-icon-arrow-down el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-picture-outline"
-            >插画
-            </el-dropdown-item
-            >
+            <router-link to="/contribute">
+              <el-dropdown-item icon="el-icon-picture-outline">
+                插画
+              </el-dropdown-item>
+            </router-link>
             <el-dropdown-item icon="el-icon-menu">漫画</el-dropdown-item>
             <el-dropdown-item icon="el-icon-reading">小说</el-dropdown-item>
           </el-dropdown-menu>
