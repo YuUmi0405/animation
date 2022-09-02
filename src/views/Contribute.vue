@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div v-loading="loading">
+    <Header></Header>
     <el-row>
       <el-col :offset="2" :span="20">
         <div class="cropper-app">
@@ -126,6 +127,7 @@
       </el-form>
 
     </el-row>
+    <Footer></Footer>
 
   </div>
 
@@ -134,12 +136,19 @@
 <script>
 import CropperImage from "@/components/Contribute/Cropper.vue";
 import {objectToFormData} from "../assets/js/utils";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer"
 
 export default {
   name: "Tailoring",
-  components: {CropperImage},
+  components: {
+    CropperImage,
+    Header,
+    Footer
+  },
   data() {
     return {
+      loading: false,
       form: {
         title: '',
         author_name: "",
@@ -167,22 +176,33 @@ export default {
       recommendTags: [], //推荐标签
       inputVisible: false,
       inputValue: ''
-      // thumbnail: ""
     }
   },
   methods: {
     onSubmit() {
       let param = new FormData();
-      // console.log(...this.form)
-      // param.append(...this.form)
       param = objectToFormData(this.form)
-      // param.append()
       param.append("original_img", this.previews.original_img)
       param.append("thumbnail_img", this.previews.thumbnail_img)
+      this.loading = true
       let result = this.$api.upload_image(param)
-      // result.then(res => {
-      //   console.log(res)
-      // })
+      result.then(res => {
+        console.log(res.data.code)
+        this.loading = false
+        if (res.data.code === 200) {
+          this.$message({
+            message: "上传图片成功",
+            type: "success",
+            duration: 1000,
+          })
+        } else {
+          this.$message({
+            message: "上传失败，请稍后再试",
+            type: "warning",
+            duration: 1000,
+          })
+        }
+      })
     },
     handleClose(tag) {
       this.form.tags.splice(this.form.tags.indexOf(tag), 1);

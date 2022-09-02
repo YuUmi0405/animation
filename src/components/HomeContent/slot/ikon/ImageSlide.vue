@@ -3,9 +3,9 @@
   <div class="evaGFr cFrVDg">
     <div v-if="slot_type==='image_tag'" :class="slot_type">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="i in 20" v-bind:key="i">
-          <a href="" class="tag">
-            <div class="tag_size">神奇寶貝</div>
+        <div class="swiper-slide" v-for="t in tags" v-bind:key="i">
+          <a href="" class="tag" style="">
+            <div class="tag_size">{{ t }}</div>
           </a>
         </div>
       </div>
@@ -14,7 +14,7 @@
 
     <div v-else :id="slot_type" :class="slot_type" v-on:mousemove="mouse_move">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="item.thumbnail_url">
+        <div class="swiper-slide" v-for="item in image_info_list" v-bind:key="item.url">
           <div class="concern_work_img" @click="go_to_image_detail(item.id,$event)">
             <el-image style="width: 100%;height: 100%" :src="item.url" :fit="'cover'"></el-image>
             <svg v-if="!item.love" t="1656314860240" @click="collect_or_cancel(item.id,$event)"
@@ -115,11 +115,11 @@ export default {
   },
   data() {
     return {
-      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       image_info_list: [],
       count: 0,
       progress: 0,
-      is_love: 0
+      is_love: 0,
+      tags: []
 
     }
   },
@@ -140,7 +140,7 @@ export default {
     },
     push_url(res) {
       res.data.data.forEach(item => {
-        item.url = this.$api.base_url + item.thumbnail_url
+        item.url = item.thumbnail_url
         console.log(item.url)
       })
       this.image_info_list = res.data.data
@@ -162,7 +162,6 @@ export default {
       res_data = this.$api.get_image_info(1, 10)
       res_data.then(res => {
 
-        console.log(res)
         let flag = valid_status(res)
         if (flag) {
           //先推url到数组，swiper长度根据数组长度来
@@ -188,9 +187,19 @@ export default {
     },
     go_to_image_detail(id) {
       this.$router.push('/image_detail/' + id)
+    },
+    get_tags() {
+      let result = this.$api.get_tags(1, 10)
+      result.then(res => {
+        res.data.data.tags.forEach(item=>{
+          this.tags.push(item.name)
+        })
+      })
     }
   },
   mounted() {
+    this.get_tags()
+    // 根据传入的参数加载不同的slide
     if (this.slot_type === "concern_work") {
       this.get_concern_work_image_info()
     } else {

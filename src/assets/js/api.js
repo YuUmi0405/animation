@@ -1,5 +1,4 @@
 import {axios_post, axios_get} from './request.js'
-import da from "element-ui/src/locale/lang/da";
 
 const base_url = '/api'
 const url_prefix = "/api/v1"
@@ -31,6 +30,9 @@ const image_detail_api = base_url + url_prefix + '/image_detail'
 //图片上传
 const upload_image_api = base_url + url_prefix + '/upload_image'
 
+//获取标签列表
+const get_tags_api = base_url + url_prefix + '/tags'
+
 function register(data) {
     return axios_post(register_api, data)
 }
@@ -50,6 +52,13 @@ function get_image_info(page, page_size) {
     let get_image_list
     get_image_list = (images_api + "?page=" + page + "&page_size=" + page_size)
     return axios_get(get_image_list)
+
+}
+
+function get_tags(page, page_size) {
+    let get_tags
+    get_tags = (get_tags_api + "?page=" + page + "&page_size=" + page_size)
+    return axios_get(get_tags)
 
 }
 
@@ -94,5 +103,6 @@ export default {
     upload_avatar_api: upload_avatar_api,
     get_user_rel_image: get_user_rel_image,
     get_image_detail: get_image_detail,
-    upload_image: upload_image
+    upload_image: upload_image,
+    get_tags: get_tags
 }

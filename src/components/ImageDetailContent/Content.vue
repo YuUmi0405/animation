@@ -39,8 +39,8 @@ export default {
       // alert(newValue);
       let result = this.$api.get_image_detail(newValue)
       result.then(res => {
-        this.image_url = this.$api.base_url + res.data.data.thumbnail_url
-        this.image_url_list.push(this.$api.base_url + res.data.data.thumbnail_url)
+        this.image_url = res.data.data.original_url
+        this.image_url_list.push(res.data.data.original_url)
 
 
       })
