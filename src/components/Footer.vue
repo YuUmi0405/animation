@@ -8,7 +8,7 @@
             <li>意见反馈</li>
             <li>新手指南</li>
         </ul>
-        <p>Copyright © PicShare.com版权所有 | 京ICP备17072161号-1</p>
+        <p>Copyright © PicShare.com版权所有 | 浙ICP备2022026648号</p>
     </div>
 </template>
 
