@@ -24,6 +24,8 @@
         height: 128px;
         background: #25292e;
         color: #fff;
+        position:fixed;
+        bottom:0;
     }
 
     .footer ul {

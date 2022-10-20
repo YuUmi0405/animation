@@ -135,16 +135,14 @@
 
 <script>
 import CropperImage from "@/components/Contribute/Cropper.vue";
-import {objectToFormData} from "../assets/js/utils";
+import {objectToFormData, valid_status} from "../assets/js/utils";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer"
 
 export default {
   name: "Tailoring",
   components: {
     CropperImage,
     Header,
-    Footer
   },
   data() {
     return {
@@ -187,21 +185,13 @@ export default {
       this.loading = true
       let result = this.$api.upload_image(param)
       result.then(res => {
-        console.log(res.data.code)
         this.loading = false
-        if (res.data.code === 200) {
-          this.$message({
-            message: "上传图片成功",
-            type: "success",
-            duration: 1000,
-          })
-        } else {
-          this.$message({
-            message: "上传失败，请稍后再试",
-            type: "warning",
-            duration: 1000,
-          })
-        }
+        valid_status(res,{
+          "success": "上传图片成功",
+          "fail": "上传失败，请稍后再试",
+
+        })
+
       })
     },
     handleClose(tag) {

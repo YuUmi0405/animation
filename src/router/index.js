@@ -13,6 +13,7 @@ import {get_user_info} from "../assets/js/api";
 import {store} from "../main";
 // import {Navbar} from "../components/navbar";
 import VueCropper from "vue-cropper";
+import {DURATION} from "../assets/js/settings";
 
 Vue.use(VueCropper);
 
@@ -71,7 +72,7 @@ router.beforeEach((to, from, next) => {
         if (!token) {
             Message.error({
                 message: "请先登录",
-                duration: 1000
+                duration: DURATION
             })
             next({path: '/login'});
         } else {

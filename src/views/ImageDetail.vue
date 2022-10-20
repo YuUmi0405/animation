@@ -2,14 +2,12 @@
   <div>
     <Header></Header>
     <Content :id="id"></Content>
-    <Footer></Footer>
   </div>
 
 </template>
 
 <script>
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer"
 import Content from "../components/ImageDetailContent/Content"
 
 export default {
@@ -17,7 +15,6 @@ export default {
   components: {
     Header,
     Content,
-    Footer
   },
   data() {
     return {

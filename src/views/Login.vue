@@ -107,7 +107,7 @@
 
 
     </div>
-    <Footer></Footer>
+<!--    <Footer></Footer>-->
   </div>
 
 </template>
@@ -119,14 +119,11 @@ import {setToken} from "../utils/auth";
 import {get_user_info} from "../assets/js/api";
 import {valid_status} from "../assets/js/utils";
 import {DURATION} from "../assets/js/settings";
-import Footer from "../components/Footer"
-
 
 export default {
   name: "Login",
   components: {
     BackBanner,
-    Footer
   },
   data() {
     return {

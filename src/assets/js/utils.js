@@ -1,17 +1,23 @@
 import {Message} from 'element-ui'
 import api from './api'
+import {DURATION} from "./settings";
 
-export function valid_status(res) {
+export function valid_status(res, message = {}) {
     if (res.data.code !== 200) {
         Message.error({
-            message: res.data.message,
-            duration: 1000
+            message: message.fail ? message.fail : res.data.message,
+            duration: DURATION
         })
+
         return false
     }
+    Message.success({
+        message: message.success ? message.success : res.data.message,
+        duration: DURATION
+    })
+
     return true
 }
-
 
 export function get_static_image_url(url) {
     return api.base_url + url
